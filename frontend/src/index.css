@@ -1,22 +1,33 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
 }
 
+@font-face {
+  font-family: 'custom-font';
+  src: url('./assets/fonts/IRANYekanRegular.ttf'), url('./assets/fonts/IRANYekanMedium.ttf'), url('./assets/fonts/IRANYekanBold.ttf');
+}
 
+* {
+  font-family: 'custom-font' !important;
+  scrollbar-width: none;
+}
+
+/* 
 @plugin "daisyui/theme" {
   name: "light";
   default: false;
   prefersdark: false;
   color-scheme: "light";
   --color-base-100: #ffffff;
-  --color-base-200: #eee6f7;
-  --color-base-300: #ddcdef;
-  --color-base-content: oklch(32.437% 0.022 264.182);
-  --color-primary: oklch(59.435% 0.077 254.027);
-  --color-primary-content: oklch(11.887% 0.015 254.027);
-  --color-secondary: oklch(69.651% 0.059 248.687);
-  --color-secondary-content: oklch(13.93% 0.011 248.687);
+  --color-base-200: #e9e9e9;
+  --color-base-300: #d3d3d3;
+  --color-base-content: #05000d;
+  --color-primary: #360185;
+  --color-primary-content: #05000d;
+  --color-secondary: #8F0177;
+  --color-secondary-content: #ebe6f3;
   --color-accent: oklch(77.464% 0.062 217.469);
   --color-accent-content: oklch(15.492% 0.012 217.469);
   --color-neutral: oklch(45.229% 0.035 264.131);
@@ -46,14 +57,14 @@
   default: false;
   prefersdark: false;
   color-scheme: "dark";
-  --color-base-100: #110123;
-  --color-base-200: #090011;
-  --color-base-300: #000000;
-  --color-base-content: oklch(84.87% 0 0);
-  --color-primary: oklch(41.703% 0.099 251.473);
-  --color-primary-content: oklch(88.34% 0.019 251.473);
-  --color-secondary: oklch(64.092% 0.027 229.389);
-  --color-secondary-content: oklch(12.818% 0.005 229.389);
+  --color-base-100: #0a0a0a;
+  --color-base-200: #070707;
+  --color-base-300: #030303;
+  --color-base-content: #e9e9e9;
+  --color-primary: #360185;
+  --color-primary-content: #e9e9e9;
+  --color-secondary: #8F0177;
+  --color-secondary-content: #ebe6f3;
   --color-accent: oklch(67.271% 0.167 35.791);
   --color-accent-content: oklch(13.454% 0.033 35.791);
   --color-neutral: oklch(27.441% 0.013 253.041);
@@ -74,4 +85,4 @@
   --border: 1px;
   --depth: 0;
   --noise: 0;
-}
+} */
