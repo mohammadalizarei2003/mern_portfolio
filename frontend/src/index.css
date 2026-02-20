@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+  themes: nord --default, dim --prefersdark;
 }
+@custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
   font-family: 'custom-font';
@@ -86,3 +87,5 @@
   --depth: 0;
   --noise: 0;
 } */
+
+
