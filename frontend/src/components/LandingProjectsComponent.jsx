@@ -1,16 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguageStore } from "../stores/useLanguageStore";
 import { localizationEnTexts, localizationFaTexts } from "../utils/constance";
 import { LuSparkles, LuArrowUpRight, LuFolder } from "react-icons/lu";
+import { useScrollStore } from "../stores/useScrollStore";
 
 const LandingProjectsComponent = () => {
     const { language } = useLanguageStore();
     const [local, setLocal] = useState({});
     const [activeFilter, setActiveFilter] = useState("all");
+    const sectionRef = useRef(null);
+    const { scrollToProjects, setScrollToProjects } = useScrollStore();
 
     useEffect(() => {
         setLocal(language === 'en' ? localizationEnTexts : localizationFaTexts);
     }, [language]);
+
+    useEffect(() => {
+        if (scrollToProjects && sectionRef.current) {
+            sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+            setScrollToProjects(false);
+        }
+    }, [scrollToProjects, setScrollToProjects]);
+
+
 
     const isRTL = language === 'fa';
 
@@ -55,13 +67,13 @@ const LandingProjectsComponent = () => {
         { id: "mobile", label: isRTL ? "موبایل" : "Mobile" }
     ];
 
-    const filteredProjects = activeFilter === "all" 
-        ? projects 
+    const filteredProjects = activeFilter === "all"
+        ? projects
         : projects.filter(p => p.category === activeFilter);
 
     return (
-        <section className="relative max-w-7xl mx-auto lg:px-6 md:px-2 px-1 py-24 overflow-hidden bg-transparent" dir={isRTL ? 'rtl' : 'ltr'}>
-            
+        <section ref={sectionRef} className="relative max-w-7xl mx-auto lg:px-6 md:px-2 px-1 py-24 overflow-hidden bg-transparent" dir={isRTL ? 'rtl' : 'ltr'}>
+
             {/* Background Orbs - Softer for Light Mode */}
             <div className="absolute top-20 -left-20 size-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-[120px] -z-10" />
             <div className="absolute bottom-20 -right-20 size-96 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-[120px] -z-10" />
@@ -93,11 +105,10 @@ const LandingProjectsComponent = () => {
                         <button
                             key={filter.id}
                             onClick={() => setActiveFilter(filter.id)}
-                            className={`px-8 py-2.5 text-sm font-black rounded-[18px] transition-all duration-500 ${
-                                activeFilter === filter.id
-                                    ? 'bg-white dark:bg-primary text-primary dark:text-white shadow-md dark:shadow-primary/20 scale-105'
-                                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                            }`}
+                            className={`px-8 py-2.5 text-sm font-black rounded-[18px] transition-all duration-500 ${activeFilter === filter.id
+                                ? 'bg-white dark:bg-primary text-primary dark:text-white shadow-md dark:shadow-primary/20 scale-105'
+                                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                                }`}
                         >
                             {filter.label}
                         </button>
@@ -120,7 +131,7 @@ const LandingProjectsComponent = () => {
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            
+
                             {/* Category Badge */}
                             <div className={`absolute top-6 ${isRTL ? 'left-6' : 'right-6'} bg-white/90 dark:bg-black/50 backdrop-blur-md px-4 py-1.5 rounded-2xl border border-white/20 shadow-sm`}>
                                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white">

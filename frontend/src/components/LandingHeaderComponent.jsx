@@ -3,11 +3,13 @@ import { useThemeStore } from "../stores/useThemeStore";
 import { useLanguageStore } from "../stores/useLanguageStore";
 import { useEffect, useState } from "react";
 import { localizationEnTexts, localizationFaTexts } from "../utils/constance";
+import { useScrollStore } from "../stores/useScrollStore";
 
 const LandingHeaderComponent = () => {
     const { theme, themes, toggleThemeMode } = useThemeStore();
     const { language, toggleLanguage } = useLanguageStore();
     const [local, setLocal] = useState({});
+    const setScrollToBackHero = useScrollStore((state) => state.setScrollToBackHero);
 
     useEffect(() => {
         setLocal(language === 'en' ? localizationEnTexts : localizationFaTexts);
@@ -16,7 +18,7 @@ const LandingHeaderComponent = () => {
     const isRTL = language === 'fa';
 
     return (
-        <header 
+        <header
             className="sticky top-2 z-50 mx-auto w-full 
             flex items-center justify-between px-6 py-2.5 rounded-3xl
             
@@ -38,7 +40,7 @@ const LandingHeaderComponent = () => {
             dir={isRTL ? 'rtl' : 'ltr'}
         >
             {/* Logo Section */}
-            <div className="flex items-center gap-3 group cursor-pointer">
+            <div className="flex items-center gap-3 group cursor-pointer" onClick={() => setScrollToBackHero(true)}>
                 <div className="relative size-10 flex items-center justify-center">
                     <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="relative size-9 bg-gradient-to-tr from-primary to-primary-focus rounded-[14px] flex items-center justify-center shadow-lg transform group-hover:rotate-[8deg] transition-all duration-500">

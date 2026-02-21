@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguageStore } from "../stores/useLanguageStore";
 import { LuLinkedin, LuMail, LuPhone, LuArrowUpRight, LuSparkles, LuArrowDownRight } from "react-icons/lu";
 import { SiChromewebstore } from "react-icons/si";
@@ -6,19 +6,32 @@ import { FaMobileAlt } from "react-icons/fa";
 import { TbUxCircle } from "react-icons/tb";
 import { localizationEnTexts, localizationFaTexts } from "../utils/constance";
 import profileImage from '../assets/images/profile.jpg'
+import { useScrollStore } from "../stores/useScrollStore";
 
 const LandingHeroComponent = () => {
   const { language } = useLanguageStore();
   const [local, setLocal] = useState({});
+  const { scrollToBackHero, setScrollToBackHero } = useScrollStore();
+  const sectionRef = useRef(false);
+
+  const setScrollToProjects = useScrollStore((state) => state.setScrollToProjects);
 
   useEffect(() => {
     setLocal(language === 'en' ? localizationEnTexts : localizationFaTexts);
   }, [language]);
 
+
+  useEffect(() => {
+    if (scrollToBackHero && sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+      setScrollToBackHero(false);
+    }
+  }, [scrollToBackHero, setScrollToBackHero]);
+
   const isRTL = language === 'fa';
 
   return (
-    <section className="relative w-full min-h-screen pt-20 pb-24 md:py-28 px-4 md:px-8 overflow-hidden flex items-center bg-transparent rounded-3xl">
+    <section className="relative w-full min-h-screen pt-20 pb-24 md:py-28 px-4 md:px-8 overflow-hidden flex items-center bg-transparent rounded-3xl" ref={sectionRef}>
 
       {/* --- Optimized Background Elements --- */}
       <div className="absolute top-20 -left-20 size-[450px] bg-primary/10 rounded-full blur-[130px] -z-10 animate-pulse" />
@@ -82,13 +95,13 @@ const LandingHeroComponent = () => {
 
           {/* Main content */}
           <div className={`lg:w-7/12 ${isRTL ? 'text-right' : 'text-left'} text-center lg:text-right`}>
-            <div className={`mb-6 ${isRTL ?'text-right': 'text-left'}`}>
+            <div className={`mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
               <span className="text-xs font-black text-primary uppercase tracking-[0.5em] opacity-80">
                 {isRTL ? 'سلام، من هستم' : 'Hello, I am'}
               </span>
             </div>
 
-            <h1 className={`text-6xl font-black mb-5 tracking-tighter leading-none text-slate-800 dark:text-white ${isRTL ? 'text-right': 'text-left'}`}>
+            <h1 className={`text-6xl font-black mb-5 tracking-tighter leading-none text-slate-800 dark:text-white ${isRTL ? 'text-right' : 'text-left'}`}>
               {local.headerLocalStep1} <span className="relative text-primary inline-block drop-shadow-sm"> {local.headerLocalStep2}</span>
             </h1>
 
@@ -111,20 +124,23 @@ const LandingHeroComponent = () => {
 
             {/* CTA Buttons - Premium Polish */}
             <div className={`flex flex-wrap items-center gap-6 mb-16 ${isRTL ? 'justify-end' : 'justify-start'}`}>
-              <button className="group relative px-10 py-5 bg-primary text-white rounded-2xl font-black shadow-2xl shadow-primary/30 hover:-translate-y-1.5 transition-all active:scale-95 cursor-pointer">
+              <button
+                className="group relative px-10 py-5 bg-primary text-white rounded-2xl font-black shadow-2xl shadow-primary/30 hover:-translate-y-1.5 transition-all active:scale-95 cursor-pointer"
+                onClick={() => setScrollToProjects(true)}
+              >
                 <span className="relative z-10 flex items-center gap-3">
                   {isRTL ? 'مشاهده پروژه‌ها' : 'View Projects'}
                   <LuArrowDownRight className="size-6 transition-transform rotate-90 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </span>
               </button>
 
-              <button className="px-10 py-5 rounded-2xl font-black cursor-pointer 
+              {/* <button className="px-10 py-5 rounded-2xl font-black cursor-pointer 
                 border-2 border-slate-200 dark:border-white/10 
                 bg-white/80 dark:bg-white/5 backdrop-blur-xl
                 text-slate-700 dark:text-slate-200 shadow-sm
                 hover:bg-slate-50 dark:hover:bg-white/10 transition-all active:scale-95">
                 {isRTL ? 'دانلود رزومه' : 'Download CV'}
-              </button>
+              </button> */}
             </div>
 
             {/* Stats - Refined Typography */}

@@ -1,5 +1,6 @@
 import { useLanguageStore } from "../stores/useLanguageStore";
 import { LuGithub, LuLinkedin, LuTwitter, LuMail, LuHeart, LuSparkles, LuExternalLink } from "react-icons/lu";
+import { BsTelegram, BsGithub, BsLinkedin, BsMailbox } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { localizationEnTexts, localizationFaTexts } from "../utils/constance";
 
@@ -15,9 +16,9 @@ const LandingFooterComponent = () => {
     const currentYear = new Date().getFullYear();
 
     const socialLinks = [
-        { icon: LuGithub, href: "https://github.com/yourusername", color: "hover:bg-slate-900" },
-        { icon: LuLinkedin, href: "https://linkedin.com/in/yourusername", color: "hover:bg-blue-700" },
-        { icon: LuTwitter, href: "https://twitter.com/yourusername", color: "hover:bg-sky-500" },
+        { icon: BsGithub, href: "https://github.com/mohammadalizarei2003", color: "hover:bg-slate-900" },
+        { icon: BsLinkedin, href: "https://www.linkedin.com/in/mohammad-ali-zarei-423488338/", color: "hover:bg-blue-700" },
+        { icon: BsTelegram, href: "https://twitter.com/yourusername", color: "hover:bg-sky-500" },
         { icon: LuMail, href: "mailto:hello@example.com", color: "hover:bg-rose-500" }
     ];
 
@@ -94,13 +95,13 @@ const LandingFooterComponent = () => {
                             {isRTL ? "ارتباط مستقیم" : "Quick Contact"}
                         </h3>
                         <div className="space-y-6">
-                            <a href="mailto:hello@example.com" className="flex items-center gap-4 group p-4 bg-slate-50 dark:bg-white/5 rounded-3xl border border-transparent hover:border-primary/20 transition-all">
+                            <a href="mailto:mohammadalizarei2003@gmail.com" className="flex items-center gap-4 group p-4 bg-slate-50 dark:bg-white/5 rounded-3xl border border-transparent hover:border-primary/20 transition-all">
                                 <div className="size-12 rounded-2xl bg-white dark:bg-white/10 flex items-center justify-center text-primary shadow-sm">
                                     <LuMail className="size-6" />
                                 </div>
                                 <div>
                                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{isRTL ? 'ایمیل رسمی' : 'Official Email'}</p>
-                                    <p className="text-slate-900 dark:text-white font-black group-hover:text-primary transition-colors">hello@example.com</p>
+                                    <p dir="ltr" className="text-slate-900 dark:text-white font-black group-hover:text-primary transition-colors truncate max-w-48 text-xs mt-2 line-clamp-2">mohammadalizarei2003@gmail.com</p>
                                 </div>
                             </a>
                         </div>
