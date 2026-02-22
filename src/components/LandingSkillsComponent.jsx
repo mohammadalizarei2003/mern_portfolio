@@ -61,7 +61,7 @@ const LandingSkillsComponent = () => {
             </div>
 
             {/* Skills Grid - Super Clean Style */}
-            <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-7">
                 {skills.map((item, index) => {
                     const variant = colorVariants[index % colorVariants.length];
 

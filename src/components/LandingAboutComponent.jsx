@@ -53,7 +53,7 @@ const LandingAboutComponent = () => {
     ];
 
     return (
-        <section className="relative max-w-7xl mx-auto lg:px-32 md:px-12 px-2 py-24 md:py-32 overflow-hidden bg-transparent" dir={isRTL ? 'rtl' : 'ltr'}>
+        <section className="relative px-2 overflow-hidden bg-transparent" dir={isRTL ? 'rtl' : 'ltr'}>
             
             {/* --- Background Decorations - Softened for Light Mode --- */}
             <div className="absolute top-1/4 -left-20 size-[500px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[130px] -z-10" />
