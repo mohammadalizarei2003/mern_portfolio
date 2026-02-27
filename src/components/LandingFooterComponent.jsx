@@ -2,12 +2,13 @@ import { useLanguageStore } from "../stores/useLanguageStore";
 import { LuGithub, LuLinkedin, LuTwitter, LuMail, LuHeart, LuSparkles, LuExternalLink } from "react-icons/lu";
 import { BsTelegram, BsGithub, BsLinkedin, BsMailbox } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { localizationEnTexts, localizationFaTexts } from "../utils/constance";
+import { footerContents, localizationEnTexts, localizationFaTexts } from "../utils/constance";
 
 const LandingFooterComponent = () => {
     const { language } = useLanguageStore();
     const [local, setLocal] = useState({});
     const isRTL = language === 'fa';
+    const footerCTX = footerContents;
 
     useEffect(() => {
         setLocal(language === 'en' ? localizationEnTexts : localizationFaTexts);
@@ -16,31 +17,21 @@ const LandingFooterComponent = () => {
     const currentYear = new Date().getFullYear();
 
     const socialLinks = [
-        { icon: BsGithub, href: "https://github.com/mohammadalizarei2003", color: "hover:bg-slate-900" },
-        { icon: BsLinkedin, href: "https://www.linkedin.com/in/mohammad-ali-zarei-423488338/", color: "hover:bg-blue-700" },
-        { icon: BsTelegram, href: "https://twitter.com/yourusername", color: "hover:bg-sky-500" },
-        { icon: LuMail, href: "mailto:hello@example.com", color: "hover:bg-rose-500" }
-    ];
 
-    const navLinks = [
-        { label: isRTL ? "خانه" : "Home", href: "#" },
-        { label: isRTL ? "پروژه‌ها" : "Projects", href: "#projects" },
-        { label: isRTL ? "مهارت‌ها" : "Skills", href: "#skills" },
-        { label: isRTL ? "تماس" : "Contact", href: "#contact" }
     ];
 
     return (
         <footer className="relative w-full lg:px-6 md:p-4 p-1 py-16 overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
-            
+
             {/* Ambient Lighting */}
             <div className="absolute top-0 left-1/4 size-64 bg-primary/10 rounded-full blur-[120px] -z-10" />
             <div className="absolute bottom-0 right-1/4 size-64 bg-blue-500/10 rounded-full blur-[120px] -z-10" />
 
             <div className="relative bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 rounded-[45px] p-10 md:p-16 shadow-2xl shadow-slate-200/50 dark:shadow-none overflow-hidden">
-                
+
                 {/* Top Section */}
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
-                    
+
                     {/* Brand Info */}
                     <div className="lg:col-span-5 space-y-6">
                         <h2 className="text-3xl font-black text-slate-900 dark:text-white flex items-center gap-2">
@@ -52,10 +43,10 @@ const LandingFooterComponent = () => {
                                 ? "خلق تجربیات دیجیتالی منحصر به فرد با تمرکز بر جزئیات و کدنویسی استاندارد."
                                 : "Crafting unique digital experiences with a focus on detail and standard coding."}
                         </p>
-                        
+
                         {/* Social Buttons - High Contrast */}
                         <div className="flex flex-wrap gap-4">
-                            {socialLinks.map((social, idx) => (
+                            {footerCTX.socialLinks.map((social, idx) => (
                                 <a
                                     key={idx}
                                     href={social.href}
@@ -75,14 +66,14 @@ const LandingFooterComponent = () => {
                             {isRTL ? "دسترسی سریع" : "Navigation"}
                         </h3>
                         <ul className="space-y-4">
-                            {navLinks.map((link, idx) => (
+                            {footerCTX.navLinks.map((link, idx) => (
                                 <li key={idx}>
                                     <a
                                         href={link.href}
                                         className="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white font-bold transition-all flex items-center gap-3 group"
                                     >
                                         <span className="h-[2px] w-0 bg-primary group-hover:w-4 transition-all duration-300 rounded-full" />
-                                        {link.label}
+                                        {isRTL ? link.faLabel : link.enLabel}
                                     </a>
                                 </li>
                             ))}

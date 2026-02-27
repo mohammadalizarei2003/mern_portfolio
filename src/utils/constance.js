@@ -4,8 +4,57 @@ import { TbBrandAdobeXd, TbBrandMongodb, TbBrandDjango } from "react-icons/tb";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { GrDocker } from "react-icons/gr";
 import { FaPython } from "react-icons/fa";
+import { BsGithub, BsLinkedin, BsTelegram } from 'react-icons/bs';
+import { LuMail } from 'react-icons/lu';
+import { SiChromewebstore } from 'react-icons/si';
 
 
+export const textLocalization = {
+    // header
+    headerStep1En: 'Mr',
+    headerStep1Fa: 'آقای',
+    headerStep2En: 'Zarei',
+    headerStep2Fa: 'زارعی',
+
+    // landing
+    welcomeMessageEn: "Hello 👋 I'm Muhammad Ali!",
+    welcomeMessageFa: 'سلام 👋 من محمدعلی هستم !',
+    jobTitleEn: "🧑‍💻 I'm a Full stack developer.",
+    jobTitleFa: '🧑‍💻 من یک توسعه‌دهنده فول‌استک هستم.',
+    jobYearEn: '5+ years experience',
+    jobYearFa: '۵+ سال تجربه حرفه‌ای',
+    jobHeroDescriptionEn: "Full-stack developer with a deep passion for building modern, scalable, and user-centric software. My professional journey began with HTML, CSS, and JavaScript, and quickly expanded into the interactive and dynamic world of the web.On the back-end, I have extensive experience with Node.js and designing efficient, secure RESTful APIs, and I always focus on clean, maintainable architecture. I also use Git professionally for version control.",
+    jobHeroDescriptionFa: "توسعه‌دهنده فول‌استک با اشتیاق عمیق به خلق نرم‌افزارهای مدرن، مقیاس‌پذیر و کاربرمحور. مسیر حرفه‌ای‌ام از HTML، CSS و JavaScript آغاز شد و به سرعت به دنیای تعاملی و پویای وب گسترش یافت. در بک‌اند، با Node.js و طراحی RESTful APIهای بهینه و امن تجربه گسترده‌ای کسب کرده‌ام و همواره بر معماری تمیز و قابل نگهداری تمرکز دارم؛ Git را نیز به صورت حرفه‌ای برای مدیریت نسخه‌ها به کار می‌برم.",
+    heroProjectsButtonTextEn: 'View Projects',
+    heroProjectsButtonTextFa: 'مشاهده پروژه‌ها',
+    heroNumbers: [
+        {
+            value: '+ 5',
+            labelEn: 'Years',
+            labelFa: 'سال تجربه',
+        },
+        {
+            value: '+ 50',
+            labelEn: 'Projects',
+            labelFa: 'پروژه موفق',
+        },
+        {
+            value: '+ 20',
+            labelEn: 'Clients',
+            labelFa: 'مشتری',
+        },
+    ],
+    heroGuidCards: [
+        {
+            icon: SiChromewebstore,
+            titleEn: 'Web Developer',
+            titleFa: 'توسعه دهنده وب',
+            descriptionEn: '',
+            descriptionFa: '',
+        }
+    ]
+
+}
 
 export const skills = [
     {
@@ -153,5 +202,20 @@ export const localizationFaTexts = {
         'وب',
         'موبایل',
         'رابط کاربری',
+    ]
+}
+
+export const footerContents = {
+    socialLinks: [
+        { icon: BsGithub, href: "https://github.com/mohammadalizarei2003", color: "hover:bg-slate-900" },
+        { icon: BsLinkedin, href: "https://www.linkedin.com/in/mohammad-ali-zarei-423488338/", color: "hover:bg-blue-700" },
+        { icon: BsTelegram, href: "https://twitter.com/yourusername", color: "hover:bg-sky-500" },
+        { icon: LuMail, href: "mailto:hello@example.com", color: "hover:bg-rose-500" }
+    ],
+    navLinks: [
+        { faLabel: "خانه", enLabel: "Home", href: "#" },
+        { faLabel: "پروژه‌ها", enLabel: "Projects", href: "#projects" },
+        { faLabel: "مهارت‌ها", enLabel: "Skills", href: "#skills" },
+        { faLabel: "تماس", enLabel: "Contact", href: "#contact" }
     ]
 }

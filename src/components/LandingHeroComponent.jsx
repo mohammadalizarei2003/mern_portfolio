@@ -4,7 +4,7 @@ import { LuLinkedin, LuMail, LuPhone, LuArrowUpRight, LuSparkles, LuArrowDownRig
 import { SiChromewebstore } from "react-icons/si";
 import { FaMobileAlt } from "react-icons/fa";
 import { TbUxCircle } from "react-icons/tb";
-import { localizationEnTexts, localizationFaTexts } from "../utils/constance";
+import { localizationEnTexts, localizationFaTexts, textLocalization } from "../utils/constance";
 import profileImage from '../assets/images/profile.jpg'
 import { useScrollStore } from "../stores/useScrollStore";
 
@@ -13,6 +13,7 @@ const LandingHeroComponent = () => {
   const [local, setLocal] = useState({});
   const { scrollToBackHero, setScrollToBackHero } = useScrollStore();
   const sectionRef = useRef(false);
+  const tr = textLocalization;
 
   const setScrollToProjects = useScrollStore((state) => state.setScrollToProjects);
 
@@ -50,7 +51,7 @@ const LandingHeroComponent = () => {
           border border-white/40 dark:border-white/10 mb-12 hover:scale-105 transition-all duration-300 shadow-sm shadow-slate-200/50 dark:shadow-none`}>
           <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_rgba(var(--p),0.8)]" />
           <span className="text-sm font-bold tracking-tight text-slate-700 dark:text-slate-100">
-            {local.welcomeMessage}
+            {isRTL ? tr.welcomeMessageFa : tr.welcomeMessageEn}
           </span>
           <LuSparkles className="size-4 text-amber-500 ml-1" />
         </div>
@@ -95,22 +96,19 @@ const LandingHeroComponent = () => {
 
           {/* Main content */}
           <div className={`lg:w-7/12 ${isRTL ? 'text-right' : 'text-left'} text-center lg:text-right`}>
-            <div className={`mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
-              <span className="text-xs font-black text-primary uppercase tracking-[0.5em] opacity-80">
-                {isRTL ? 'سلام، من هستم' : 'Hello, I am'}
-              </span>
-            </div>
+
 
             <h1 className={`text-6xl font-black mb-5 tracking-tighter leading-none text-slate-800 dark:text-white ${isRTL ? 'text-right' : 'text-left'}`}>
-              {local.headerLocalStep1} <span className="relative text-primary inline-block drop-shadow-sm"> {local.headerLocalStep2}</span>
+              {isRTL ? tr.headerStep1Fa : tr.headerStep1En}&nbsp;
+              <span className="relative text-primary inline-block drop-shadow-sm">{isRTL ? tr.headerStep2Fa : tr.headerStep2En}</span>
             </h1>
 
             <div className={`flex items-center gap-3 mb-8 ${isRTL ? 'justify-end' : 'justify-start'} justify-center lg:justify-start`}>
               <div className="px-5 py-2 bg-white/60 dark:bg-primary/10 backdrop-blur-md rounded-xl border border-slate-200 dark:border-primary/20 shadow-sm">
-                <span className="text-primary font-black text-sm">{local.jobTitle}</span>
+                <span className="text-primary font-black text-sm">{isRTL ? tr.jobTitleFa : tr.jobTitleEn}</span>
               </div>
               <div className="size-1.5 bg-slate-300 dark:bg-primary/40 rounded-full" />
-              <span className="text-slate-500 dark:text-slate-400 font-bold text-sm tracking-tight">{isRTL ? '۵+ سال تجربه حرفه‌ای' : '5+ years experience'}</span>
+              <span className="text-slate-500 dark:text-slate-400 font-bold text-sm tracking-tight">{isRTL ? tr.jobYearFa : tr.jobYearEn}</span>
             </div>
 
             <p className={
@@ -119,7 +117,7 @@ const LandingHeroComponent = () => {
               ${isRTL ? "text-right" : "text-left"}
               `
             }>
-              {local.jobDescription}
+              {isRTL ? tr.jobHeroDescriptionFa : tr.jobHeroDescriptionEn}
             </p>
 
             {/* CTA Buttons - Premium Polish */}
@@ -129,7 +127,7 @@ const LandingHeroComponent = () => {
                 onClick={() => setScrollToProjects(true)}
               >
                 <span className="relative z-10 flex items-center gap-3">
-                  {isRTL ? 'مشاهده پروژه‌ها' : 'View Projects'}
+                  {isRTL ? tr.heroProjectsButtonTextFa : tr.heroProjectsButtonTextEn}
                   <LuArrowDownRight className="size-6 transition-transform rotate-90 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </span>
               </button>
@@ -145,14 +143,10 @@ const LandingHeroComponent = () => {
 
             {/* Stats - Refined Typography */}
             <div className={`flex items-center gap-12 border-t border-slate-100 dark:border-white/5 pt-10 ${isRTL ? 'justify-end' : 'justify-start'}`}>
-              {[
-                { val: '۵+', label: isRTL ? 'سال تجربه' : 'Years' },
-                { val: '۵۰+', label: isRTL ? 'پروژه موفق' : 'Projects' },
-                { val: '۲۰+', label: isRTL ? 'مشتری' : 'Clients' }
-              ].map((stat, i) => (
+              {tr.heroNumbers.map((stat, i) => (
                 <div key={i} className="flex flex-col gap-1">
-                  <div className="text-4xl font-black text-slate-800 dark:text-white leading-none tracking-tight">{stat.val}</div>
-                  <div className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">{stat.label}</div>
+                  <div className="text-4xl font-black text-slate-800 dark:text-white leading-none tracking-tight">{stat.value}</div>
+                  <div className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">{isRTL ? stat.labelFa : stat.labelEn}</div>
                 </div>
               ))}
             </div>

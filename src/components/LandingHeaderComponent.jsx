@@ -2,18 +2,14 @@ import { LuLanguages, LuMoon, LuSun } from "react-icons/lu";
 import { useThemeStore } from "../stores/useThemeStore";
 import { useLanguageStore } from "../stores/useLanguageStore";
 import { useEffect, useState } from "react";
-import { localizationEnTexts, localizationFaTexts } from "../utils/constance";
+import { localizationEnTexts, localizationFaTexts, textLocalization } from "../utils/constance";
 import { useScrollStore } from "../stores/useScrollStore";
 
 const LandingHeaderComponent = () => {
     const { theme, themes, toggleThemeMode } = useThemeStore();
     const { language, toggleLanguage } = useLanguageStore();
-    const [local, setLocal] = useState({});
     const setScrollToBackHero = useScrollStore((state) => state.setScrollToBackHero);
-
-    useEffect(() => {
-        setLocal(language === 'en' ? localizationEnTexts : localizationFaTexts);
-    }, [language]);
+    const tr = textLocalization;
 
     const isRTL = language === 'fa';
 
@@ -45,16 +41,16 @@ const LandingHeaderComponent = () => {
                     <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="relative size-9 bg-gradient-to-tr from-primary to-primary-focus rounded-[14px] flex items-center justify-center shadow-lg transform group-hover:rotate-[8deg] transition-all duration-500">
                         <span className="text-primary-content font-black text-lg select-none">
-                            {local.headerLocalStep1?.charAt(0)}
+                            {isRTL ? tr.headerStep1Fa.charAt(0) : tr.headerStep1En.charAt(0)}
                         </span>
                     </div>
                 </div>
                 <div className="flex flex-col">
                     <span className="text-lg font-black tracking-tight text-slate-800 dark:text-white leading-none">
-                        {local.headerLocalStep1}
+                        {isRTL ? tr.headerStep1Fa : tr.headerStep1En}
                     </span>
                     <span className="text-[9px] font-bold text-primary uppercase tracking-[0.3em] mt-1 opacity-80">
-                        {local.headerLocalStep2}
+                        {isRTL ? tr.headerStep2Fa : tr.headerStep2En}
                     </span>
                 </div>
             </div>
